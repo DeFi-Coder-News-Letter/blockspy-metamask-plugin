@@ -1,0 +1,41 @@
+<!doctype html>
+
+<html>
+
+  </head>
+    <title>BlockSpy Installer</title>
+  </head>
+
+  <body>
+    <h1>BlockSpy Installer</h1>
+    <details>
+      <summary>Instructions</summary>
+      <ul>
+        <li>Click "Connect". Then, accept both MetaMask prompts. This will install BlockSpy for MetaMask. Then, when you send ETH or tokens, you will receive a warning regarding the reputation of the recipient, right within MetaMask.</li>
+      </ul>
+    </details>
+    <br/>
+
+    <button class="connect">Connect</button>
+  </body>
+
+  <script>
+
+    const snapId = new URL('package.json', window.location.href).toString()
+
+    const connectButton = document.querySelector('button.connect')
+
+    connectButton.addEventListener('click', connect)
+
+    async function connect () {
+      await ethereum.send({
+        method: 'wallet_enable',
+        params: [{
+          wallet_plugin: { [snapId]: {} },
+        }]
+      })
+    }
+
+  </script>
+
+</html>
